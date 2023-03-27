@@ -14,7 +14,11 @@ const optionsBillboard = {
 	}
 };
 
-
+fetch('https://billboard-api2.p.rapidapi.com/hot-100?date=2019-05-11&range=1-10', optionsBillboard)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+	
 let userChoice = "ludracris"
 userChoice = userChoice.replace(' ', '_')
 
@@ -26,7 +30,7 @@ const getSongName = async () => {
     const infoArray = songNameJSON.data
     infoArray.forEach(e => {
         let songTitle = e.title
-        console.log(songTitle, e.preview)
+       console.log(songTitle, e.preview)
     });
     console.log(infoArray)
 }
@@ -40,9 +44,9 @@ const getAlbumName = async () => {
     const infoArray = songNameJSON.data
     infoArray.forEach(e => {
         let songTitle = e.title
-        console.log(e)
+       console.log(e)
     });
-    console.log(infoArray)
+   console.log(infoArray)
 }
 // getAlbumName()
 
