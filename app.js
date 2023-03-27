@@ -5,7 +5,7 @@ const options = {
 		'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
 	}
 };
-let userChoice = "jay z"
+let userChoice = "beyonce"
 userChoice = userChoice.replace(' ', '_')
 fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${userChoice}`, options)
 	.then(response => response.json())
