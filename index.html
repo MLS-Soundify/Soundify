@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/tailwindConfig.js" type="text/javascript"></script>
-    <title>Soundify</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soundify</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
 </head>
 <body>
-    <h1 class="text-3xl font-bold underline text-clifford">
-        Hello world!
-    </h1>
-    <script src="/app.js" type="text/javascript"></script>
+  <div class="flex flex-row">
+    <!-- Sidebar -->
+    <div class="bg-gray-900 text-white w-1/4 h-screen">
+      <h1 class="font-bold text-2xl p-4">Soundify</h1>
+        <form class="p-4">
+            <input class="bg-gray-800 text-white rounded-md py-2 px-3 w-full" type="text" placeholder="Search...">
+        </form>
+      <ul class="text-lg font-medium">
+        <li class="px-4 py-2 hover:bg-gray-800">Recently Listened</li>
+        <li class="px-4 py-2 hover:bg-gray-800">Your Favorites</li>
+        <li class="px-4 py-2 hover:bg-gray-800">Your Playlists</li>
+      </ul>
+    </div>
+    <!-- Main content -->
+    <div class="w-3/4 h-screen bg-gray-100">
+      <h2 class="font-bold text-2xl p-4">Welcome to Soundify!</h2>
+      <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia libero eget leo feugiat varius. Proin at dictum elit. Duis eu velit ex. Donec dignissim dolor ac massa auctor, sit amet bibendum elit pellentesque.</p>
+    </div>
+  </div>
 </body>
 </html>
