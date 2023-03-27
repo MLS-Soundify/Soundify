@@ -8,21 +8,25 @@
 </head>
 <body>
   <div class="flex flex-row">
-    <!-- Sidebar -->
-    <div class="bg-gray-900 text-white w-1/4 h-screen">
-      <h1 class="font-bold text-2xl p-4">Soundify</h1>
-        <form class="p-4">
-            <input class="bg-gray-800 text-white rounded-md py-2 px-3 w-full" type="text" placeholder="Search...">
-        </form>
-      <ul class="text-lg font-medium">
-        <li class="px-4 py-2 hover:bg-gray-800">Recently Listened</li>
-        <li class="px-4 py-2 hover:bg-gray-800">Your Favorites</li>
-        <li class="px-4 py-2 hover:bg-gray-800">Your Playlists</li>
-      </ul>
-    </div>
+<!-- Sidebar -->
+  <div class="bg-gray-900 text-white w-1/4 h-screen">
+        <h1 class="font-bold text-2xl p-4">Soundify</h1>
+          <ul class="text-lg font-medium">
+             <li class="px-4 py-2 hover:bg-gray-800">Recently Listened</li>
+             <li class="px-4 py-2 hover:bg-gray-800">Your Favorites</li>
+             <li class="px-4 py-2 hover:bg-gray-800 flex items-center justify-between">
+            <span>Your Playlists</span>
+            <button class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">+</button>
+            </li>
+           </ul>
+  </div>
+
     <!-- Main content -->
     <div class="w-3/4 h-screen bg-gray-100">
       <h2 class="font-bold text-2xl p-4">Welcome to Soundify!</h2>
+        <div class="p-4 flex justify-center items-center">
+          <input class="bg-gray-800 text-white rounded-md py-2 px-3 w-full" type="text" placeholder="Search...">
+        </div>
       <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia libero eget leo feugiat varius. Proin at dictum elit. Duis eu velit ex. Donec dignissim dolor ac massa auctor, sit amet bibendum elit pellentesque.</p>
     </div>
   </div>
