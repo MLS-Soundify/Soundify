@@ -5,6 +5,16 @@ const options = {
 		'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
 	}
 };
+
+const optionsBillboard = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'bbbc3986e7msh188fe76e81fde59p1b637bjsn9ce7375c2218',
+		'X-RapidAPI-Host': 'billboard-api2.p.rapidapi.com'
+	}
+};
+
+
 let userChoice = "ludracris"
 userChoice = userChoice.replace(' ', '_')
 
