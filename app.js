@@ -5,34 +5,22 @@ const options = {
 		'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
 	}
 };
-
-const optionsBillboard = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'bbbc3986e7msh188fe76e81fde59p1b637bjsn9ce7375c2218',
-		'X-RapidAPI-Host': 'billboard-api2.p.rapidapi.com'
-	}
-};
-
-fetch('https://billboard-api2.p.rapidapi.com/hot-100?date=2019-05-11&range=1-10', optionsBillboard)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
-	
-let userChoice = "ludracris"
+let userChoice = "u remind me"
 userChoice = userChoice.replace(' ', '_')
-
-
 
 const getSongName = async () => {
     let deezerSongAPI = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${userChoice}&limit=10`, options)
     let songNameJSON = await deezerSongAPI.json()
     const infoArray = songNameJSON.data
+    if(infoArray.length === 0 ){
+        console.log("no music")
+        return "no music found! enter a different query"
+    }
     infoArray.forEach(e => {
         let songTitle = e.title
-       console.log(songTitle, e.preview)
+        let songCover = e.album.cover_medium
+       console.log(songTitle, e.preview, songCover)
     });
-    console.log(infoArray)
 }
 getSongName()
 
@@ -51,7 +39,28 @@ const getAlbumName = async () => {
 // getAlbumName()
 
 
-const playlists = [{"RandB": []}, {"Slow Jams": []},{"80's Punk": []},{"90's rap": []}] //example of how a playlist layout is
+const playlists = [{"Mo Knows": []}, {"Slow Jams": []},{"80's Punk": []},{"90's rap": []}] //example of how a playlist layout is
+
+function displayPlaylists(){
+    document.getElementById("submenu").innerText = ''
+    if(playlists.length === 0){
+        return 
+    }
+    playlists.forEach( e => {
+        for(let name in e){
+        let newPlaylist = document.createElement('h1')
+        newPlaylist.classList = "cursor-pointer p-2 hover:bg-red-800 rounded-md mt-1"
+        newPlaylist.innerText = name
+        document.getElementById("submenu").append(newPlaylist)
+        }
+    })
+}
+
+function makePlaylist(){
+
+    document.querySelector("#playlistInput").classList.toggle("hidden")
+
+}
 
 /*
 TO-DO

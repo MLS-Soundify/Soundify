@@ -8,11 +8,12 @@ tailwind.config = {
     }
 }
 function dropdown() {
-        document.querySelector("#submenu").classList.toggle("hidden");
-        document.querySelector("#arrow").classList.toggle("rotate-0");
-      }
-      dropdown();
+  document.querySelector("#submenu").classList.toggle("hidden");
+  document.querySelector("#arrow").classList.toggle("rotate-0");
+  displayPlaylists()
+}
+dropdown();
 
-      function openSidebar() {
-        document.querySelector(".sidebar").classList.toggle("hidden");
-      }
+function openSidebar() {
+  document.querySelector(".sidebar").classList.toggle("hidden");
+}
