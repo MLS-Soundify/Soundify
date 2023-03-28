@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css" type="text/css" />
   <title>Soundify</title>
   <link
       rel="stylesheet"
@@ -11,15 +12,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
 </head>
 <body>
-  <div id="sidebar-main" class="bg-blue-600">
+  <div id="sidebar-main" class="bg-red-800">
       <span
       class="absolute text-white text-4xl top-5 left-4 cursor-pointer"
       onclick="openSidebar()"
     >
       <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
     </span>
-    <div
-      class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900"
+    <div id="sideBarBackground"
+      class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center"
     >
       <div class="text-gray-100 text-xl">
         <div class="p-2.5 mt-1 flex items-center">
@@ -34,20 +35,20 @@
       </div>
    
       <div
-        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white"
       >
         <i class="bi bi-house-door-fill"></i>
         <span class="text-[15px] ml-4 text-gray-200 font-bold">Recently Listened</span>
       </div>
       <div
-        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white"
       >
         <i class="bi bi-bookmark-fill"></i>
         <span class="text-[15px] ml-4 text-gray-200 font-bold">Your Favorites</span>
       </div>
       <div class="my-4 bg-gray-600 h-[1px]"></div>
       <div
-        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white"
         onclick="dropdown()"
       >
         <i class="bi bi-chat-left-text-fill"></i>
@@ -61,46 +62,190 @@
       <div
         class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold hidden"
         id="submenu">
-        <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+        <h1 class="cursor-pointer p-2 hover:bg-red-600 rounded-md mt-1">
           Social
         </h1>
-        <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+        <h1 class="cursor-pointer p-2 hover:bg-red-600 rounded-md mt-1">
           Personal
         </h1>
-        <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+        <h1 class="cursor-pointer p-2 hover:bg-red-600 rounded-md mt-1">
           Friends
         </h1>
       </div>
       <div
-        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white"
       >
         <i class="bi bi-box-arrow-in-right"></i>
         <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
       </div>
     </div>
   </div>
-     <div
-        class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
-      >
-        <i class="bi bi-search text-sm"></i>
-        <input
-          type="text"
-          placeholder="Search"
-          class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
-        />
+  
+  <div class="row top top-buffer">
+<div class="flex justify-center ">
+  <div class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white w-full max-w-md">
+    <i class="bi bi-search text-sm"></i>
+    <input
+      type="text"
+      placeholder="Search"
+      class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
+    />
   </div>
-  <!--<div class="flex flex-row">-->
-<!-- Sidebar -->
- 
-  <!--   Main content -->
-  <!--  <div class="w-3/4 h-screen bg-gray-100">-->
-  <!--    <h2 class="font-bold text-2xl p-4">Welcome to Soundify!</h2>-->
-  <!--      <div class="p-4 flex justify-center items-center">-->
-  <!--        <input class="bg-gray-800 text-white rounded-md py-2 px-3 w-full" type="text" placeholder="Search...">-->
-  <!--      </div>-->
-  <!--    <p class="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia libero eget leo feugiat varius. Proin at dictum elit. Duis eu velit ex. Donec dignissim dolor ac massa auctor, sit amet bibendum elit pellentesque.</p>-->
-  <!--  </div>-->
-  <!--</div>-->
+</div>
+</div> 
+
+<div class="songs-album"> 
+
+<div class="flex justify-center mt-10">
+  <div class="max-w-md">
+    <div class="flex items-center mb-4">
+      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
+      <div class="userButtons songText">
+        <h2 class="text-lg font-bold songTitle">Song Title</h2>
+        <p class="text-gray-500">Artist Name</p>
+      </div>
+      <div class = "flex userButtons">
+        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-play-fill text-white"></i>
+        </button>
+  
+        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-heart-fill text-white"></i>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="flex justify-center mt-10">
+  <div class="max-w-md">
+    <div class="flex items-center mb-4">
+      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
+      <div class="userButtons songText">
+        <h2 class="text-lg font-bold songTitle">Song Title</h2>
+        <p class="text-gray-500">Artist Name</p>
+      </div>
+      <div class = "flex userButtons">
+        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-play-fill text-white"></i>
+        </button>
+  
+        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-heart-fill text-white"></i>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="flex justify-center mt-10">
+  <div class="max-w-md">
+    <div class="flex items-center mb-4">
+      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
+      <div class="userButtons songText">
+        <h2 class="text-lg font-bold songTitle">Song Title</h2>
+        <p class="text-gray-500">Artist Name</p>
+      </div>
+      <div class = "flex userButtons">
+        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-play-fill text-white"></i>
+        </button>
+  
+        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-heart-fill text-white"></i>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="flex justify-center mt-10">
+  <div class="max-w-md">
+    <div class="flex items-center mb-4">
+      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
+      <div class="userButtons songText">
+        <h2 class="text-lg font-bold songTitle">Song Title</h2>
+        <p class="text-gray-500">Artist Name</p>
+      </div>
+      <div class = "flex userButtons">
+        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-play-fill text-white"></i>
+        </button>
+  
+        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-heart-fill text-white"></i>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="flex justify-center mt-10">
+  <div class="max-w-md">
+    <div class="flex items-center mb-4">
+      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
+      <div class="userButtons songText">
+        <h2 class="text-lg font-bold songTitle">Song Title</h2>
+        <p class="text-gray-500">Artist Name</p>
+      </div>
+      <div class = "flex userButtons">
+        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-play-fill text-white"></i>
+        </button>
+  
+        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-heart-fill text-white"></i>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="flex justify-center mt-10">
+  <div class="max-w-md">
+    <div class="flex items-center mb-4">
+      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
+      <div class="userButtons songText">
+        <h2 class="text-lg font-bold songTitle">Song Title</h2>
+        <p class="text-gray-500">Artist Name</p>
+      </div>
+      <div class = "flex userButtons">
+        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-play-fill text-white"></i>
+        </button>
+  
+        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-heart-fill text-white"></i>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="flex justify-center mt-10">
+  <div class="max-w-md">
+    <div class="flex items-center mb-4">
+      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
+      <div class="userButtons songText">
+        <h2 class="text-lg font-bold songTitle">Song Title</h2>
+        <p class="text-gray-500">Artist Name</p>
+      </div>
+      <div class = "flex userButtons">
+        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-play-fill text-white"></i>
+        </button>
+  
+        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
+          <i class="bi bi-heart-fill text-white"></i>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
   <script src="/app.js" type="text/javascript"></script>
   <script type="text/javascript" src="tailwindConfig.js"></script>
 </body>
