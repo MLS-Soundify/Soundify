@@ -132,6 +132,10 @@ document.querySelectorAll(".audio-play").forEach(e => {
 })
 let playingAudio = document.getElementById("currentAudio")
 
+let artistButton = document.getElementById("dArtists")
+artistButton.addEventListener("click", element => {
+    console.log(1)
+})
 /*
 TO-DO
 - make a function that adds the recently listened to songs
