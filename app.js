@@ -39,7 +39,7 @@ const getSongName = async () => {
         console.log("no music")
         return -1
     }
-
+    document.getElementById("songDisplay").innerText = ""
     infoArray.forEach(e => {
         let songTitle = e.title;
         let songCover = e.album.cover_medium;
@@ -65,14 +65,34 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
         coverIMG.classList = "w-16 h-16 rounded-md mr-4"
         div3.append(coverIMG)
         //song data div
-        let div4 = document.createElement('div')
+            let songData = document.createElement('div')
+            songData.classList = "userButtons songText"
             let trackName = document.createElement('h2')
             trackName.classList = "text-lg font-bold songTitle"
             trackName.innerText = songName
-            let tracktitle = document.createElement('p')
-            tracktitle.classList = "text-gray-500"
-            tracktitle.innerText = songName
-    let div5 = document.createElement('div')
+            let artistTitle = document.createElement('p')
+            artistTitle.classList = "text-gray-500"
+            artistTitle.innerText = artistName
+            songData.append(trackName, artistTitle)
+        div3.append(songData)
+        //button div
+            let buttonHolder = document.createElement('div')
+            buttonHolder.classList = "flex userButtons"
+                let playbutton = document.createElement('button')
+                playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
+                    let playIcon = document.createElement('i')
+                    playIcon.classList = "bi bi-play-fill text-white"
+                    playbutton.append(playIcon)
+                let likebutton = document.createElement('button')
+                likebutton.classList = "ml-8 bg-red-900 hover:bg-red-700 rounded-full p-2"
+                    let likeIcon = document.createElement('i')
+                    likeIcon.classList = "bi bi-heart-fill text-white"
+                    likebutton.append(likeIcon)
+            buttonHolder.append(playbutton,likebutton)
+        div3.append(buttonHolder)
+    div2.append(div3)
+    div1.append(div2)
+    document.getElementById("songDisplay").append(div1)
 }
 
 
