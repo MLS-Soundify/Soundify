@@ -5,8 +5,31 @@ const options = {
 		'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
 	}
 };
-let userChoice = "u remind me"
-userChoice = userChoice.replace(' ', '_')
+
+let userChoice;
+
+// outputting the query results
+
+let uInput = document.getElementById('userSearch')
+let uInput2 = document.getElementById('userSearch2')
+uInput.addEventListener("keypress" , e => {
+    if(e.key === "Enter" && uInput.value !== ""){
+        e.preventDefault();
+        userChoice = uInput.value
+        userChoice = userChoice.replace(' ', '_')
+        uInput.value = ''
+        getSongName()
+    }
+})
+uInput2.addEventListener("click", e => {
+    // e.preventDefault();
+    if(uInput.value !== ""){
+        userChoice = uInput.value
+        userChoice = userChoice.replace(' ', '_')
+        uInput.value = ''
+        getSongName()
+    }
+})
 
 const getSongName = async () => {
     let deezerSongAPI = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${userChoice}&limit=10`, options)
@@ -14,29 +37,43 @@ const getSongName = async () => {
     const infoArray = songNameJSON.data
     if(infoArray.length === 0 ){
         console.log("no music")
-        return "no music found! enter a different query"
+        return -1
     }
+
     infoArray.forEach(e => {
-        let songTitle = e.title
-        let songCover = e.album.cover_medium
-       console.log(songTitle, e.preview, songCover)
+        let songTitle = e.title;
+        let songCover = e.album.cover_medium;
+        let trackMusic = e.preview
+        let artists = e.artist.name
+        makeSongBanner(songTitle, artists, songCover, trackMusic)
     });
 }
-getSongName()
 
 
-//broken as of now, giving back search
-const getAlbumName = async () => {
-    let deezerSongAPI = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=album:${userChoice}&limit=10`, options)
-    let songNameJSON = await deezerSongAPI.json()
-    const infoArray = songNameJSON.data
-    infoArray.forEach(e => {
-        let songTitle = e.title
-       console.log(e)
-    });
-   console.log(infoArray)
+const makeSongBanner = (songName, artistName, songArt, music) => {
+    let div1 = document.createElement('div')
+    div1.classList = "flex justify-center mt-10"
+    console.log(div1)
+    let div2 = document.createElement('div')
+    div2.classList = "max-w-md"
+    let div3 = document.createElement('div')
+    div3.classList = "flex items-center mb-4"
+    //all inside div3
+        let coverIMG = document.createElement('img')
+        coverIMG.src = songArt
+        coverIMG.alt = "Album Cover"
+        coverIMG.classList = "w-16 h-16 rounded-md mr-4"
+        div3.append(coverIMG)
+        //song data div
+        let div4 = document.createElement('div')
+            let trackName = document.createElement('h2')
+            trackName.classList = "text-lg font-bold songTitle"
+            trackName.innerText = songName
+            let tracktitle = document.createElement('p')
+            tracktitle.classList = "text-gray-500"
+            tracktitle.innerText = songName
+    let div5 = document.createElement('div')
 }
-// getAlbumName()
 
 
 const playlists = [{"Mo Knows": []}, {"Slow Jams": []},{"80's Punk": []},{"90's rap": []}] //example of how a playlist layout is
@@ -48,19 +85,27 @@ function displayPlaylists(){
     }
     playlists.forEach( e => {
         for(let name in e){
-        let newPlaylist = document.createElement('h1')
-        newPlaylist.classList = "cursor-pointer p-2 hover:bg-red-800 rounded-md mt-1"
-        newPlaylist.innerText = name
-        document.getElementById("submenu").append(newPlaylist)
+            let newPlaylist = document.createElement('h1')
+            newPlaylist.classList = "cursor-pointer p-2 hover:bg-red-800 rounded-md mt-1"
+            newPlaylist.innerText = name
+            document.getElementById("submenu").append(newPlaylist)
         }
     })
 }
+
+
+
+
 
 function makePlaylist(){
 
     document.querySelector("#playlistInput").classList.toggle("hidden")
 
 }
+document.querySelectorAll(".audio-play").forEach(e => {
+    // console.log(e)
+})
+
 
 /*
 TO-DO

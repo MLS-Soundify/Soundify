@@ -7,7 +7,7 @@ body{
 }
 
 .songs-album{
-    margin-right: 80px;
+    margin-right: 7em;
 }
 #sideBarBackground {
     background-color:#262626;
@@ -26,4 +26,8 @@ body{
 }
 .image {
     margin-right: 15%;
+}
+
+#userSearch2{
+    padding:1em;
 }
