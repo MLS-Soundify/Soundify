@@ -12,9 +12,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
 </head>
 <body>
-    <embed id="currentAudio" src="/html/Kalimba.mp3" loop="true" width="2"
-         height="0">
-  <div id="sidebar-main" class="bg-red-800">
+    <audio preload="auto" id="currentAudio">
+        <source src="" type="audio/mpeg" />
+    </audio>
+    <div id="sidebar-main" class="bg-red-800">
       <span
       class="absolute text-white text-4xl top-5 left-4 cursor-pointer"
       onclick="openSidebar()"
@@ -54,10 +55,11 @@
         <span class="text-[15px] ml-4 text-gray-200 font-bold">Recent Tracks</span>
       </div>
       <div
+        id="dArtists"
         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white"
       >
       <i class="bi bi-skip-start-circle"></i>
-        <span id="dArtists" class="text-[15px] ml-4 text-gray-200 font-bold">Deezer Artists</span>
+        <span  class="text-[15px] ml-4 text-gray-200 font-bold">Deezer Artists</span>
       </div>
       <div
         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white"
@@ -108,156 +110,9 @@
 </div>
 </div> 
 
-<div id = "songDisplay" class="songs-album"> 
+<div id = "songDisplay" class="songs-album"> </div>
 
-<div class="flex justify-center mt-10">
-  <div class="max-w-md">
-    <div class="flex items-center mb-4">
-      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
-      <div class="userButtons songText">
-        <h2 class="text-lg font-bold songTitle">Song Title</h2>
-        <p class="text-gray-500">Artist Name</p>
-      </div>
-      <div class = "flex userButtons">
-        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2 audio-play">
-          <i class="bi bi-play-fill text-white"></i>
-        </button>
-  
-        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
-          <i class="bi bi-heart-fill text-white"></i>
-        </button>
-      </div>
-      
-    </div>
-  </div>
-</div>
 
-<div class="flex justify-center mt-10">
-  <div class="max-w-md">
-    <div class="flex items-center mb-4">
-      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
-      <div class="userButtons songText">
-        <h2 class="text-lg font-bold songTitle">Song Title</h2>
-        <p class="text-gray-500">Artist Name</p>
-      </div>
-      <div class = "flex userButtons">
-        <button class="bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play">
-          <i class="bi bi-play-fill text-white"></i>
-        </button>
-  
-        <button class="ml-8 bg-red-900 hover:bg-red-700 rounded-full p-2">
-          <i class="bi bi-heart-fill text-white"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="flex justify-center mt-10">
-  <div class="max-w-md">
-    <div class="flex items-center mb-4">
-      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
-      <div class="userButtons songText">
-        <h2 class="text-lg font-bold songTitle">Song Title</h2>
-        <p class="text-gray-500">Artist Name</p>
-      </div>
-      <div class = "flex userButtons">
-        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2 audio-play">
-          <i class="bi bi-play-fill text-white"></i>
-        </button>
-  
-        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
-          <i class="bi bi-heart-fill text-white"></i>
-        </button>
-      </div>
-      
-    </div>
-  </div>
-</div>
-<div class="flex justify-center mt-10">
-  <div class="max-w-md">
-    <div class="flex items-center mb-4">
-      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
-      <div class="userButtons songText">
-        <h2 class="text-lg font-bold songTitle">Song Title</h2>
-        <p class="text-gray-500">Artist Name</p>
-      </div>
-      <div class = "flex userButtons">
-        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2 audio-play">
-          <i class="bi bi-play-fill text-white"></i>
-        </button>
-  
-        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
-          <i class="bi bi-heart-fill text-white"></i>
-        </button>
-      </div>
-      
-    </div>
-  </div>
-</div>
-<div class="flex justify-center mt-10">
-  <div class="max-w-md">
-    <div class="flex items-center mb-4">
-      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
-      <div class="userButtons songText">
-        <h2 class="text-lg font-bold songTitle">Song Title</h2>
-        <p class="text-gray-500">Artist Name</p>
-      </div>
-      <div class = "flex userButtons">
-        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2 audio-play">
-          <i class="bi bi-play-fill text-white"></i>
-        </button>
-  
-        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
-          <i class="bi bi-heart-fill text-white"></i>
-        </button>
-      </div>
-      
-    </div>
-  </div>
-</div>
-<div class="flex justify-center mt-10">
-  <div class="max-w-md">
-    <div class="flex items-center mb-4">
-      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
-      <div class="userButtons songText">
-        <h2 class="text-lg font-bold songTitle">Song Title</h2>
-        <p class="text-gray-500">Artist Name</p>
-      </div>
-      <div class = "flex userButtons">
-        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2 audio-play">
-          <i class="bi bi-play-fill text-white"></i>
-        </button>
-  
-        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
-          <i class="bi bi-heart-fill text-white"></i>
-        </button>
-      </div>
-      
-    </div>
-  </div>
-</div>
-<div class="flex justify-center mt-10">
-  <div class="max-w-md">
-    <div class="flex items-center mb-4">
-      <img src="https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F2f8cae9b56ed9c643520ef2fd62cd378.1000x1000x1.png" alt="Album Cover" class="w-16 h-16 rounded-md mr-4">
-      <div class="userButtons songText">
-        <h2 class="text-lg font-bold songTitle">Song Title</h2>
-        <p class="text-gray-500">Artist Name</p>
-      </div>
-      <div class = "flex userButtons">
-        <button class="bg-gray-600 hover:bg-gray-700 rounded-full p-2 audio-play">
-          <i class="bi bi-play-fill text-white"></i>
-        </button>
-  
-        <button class="ml-8 bg-gray-600 hover:bg-gray-700 rounded-full p-2">
-          <i class="bi bi-heart-fill text-white"></i>
-        </button>
-      </div> 
-    </div>
-  </div>
-</div>
-
-</div>
 
   <script src="app.js" type="text/javascript"></script>
   <script type="text/javascript" src="tailwindConfig.js"></script>

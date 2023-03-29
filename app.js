@@ -44,6 +44,7 @@ const getSongInfo = async () => {
         let songTitle = e.title;
         let songCover = e.album.cover_medium;
         let trackMusic = e.preview
+        console.log(trackMusic)
         let artists = e.artist.name
         console.log(trackMusic)
         makeSongBanner(songTitle, artists, songCover, trackMusic)
@@ -80,10 +81,20 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
             let buttonHolder = document.createElement('div')
             buttonHolder.classList = "flex userButtons"
                 let playbutton = document.createElement('button')
+                playbutton.value = music
+                playbutton.addEventListener('click', async e => {
+                    console.log(e)
+                    let currentVal = e.target.value;
+                    console.log(currentVal)
+                    let playingAudio = document.getElementById("currentAudio")
+                    if(playingAudio.src !== currentVal){
+                        playingAudio.src = currentVal
+                        playingAudio.play()
+                    }
+                })
                 playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
                     let playIcon = document.createElement('i')
                     playIcon.classList = "bi bi-play-fill text-white"
-                    playbutton.value = music
                     playbutton.append(playIcon)
                 let likebutton = document.createElement('button')
                 likebutton.classList = "ml-8 bg-red-900 hover:bg-red-700 rounded-full p-2"
@@ -134,7 +145,24 @@ let playingAudio = document.getElementById("currentAudio")
 
 let artistButton = document.getElementById("dArtists")
 artistButton.addEventListener("click", element => {
-    console.log(1)
+    // console.log(element)
+    if(!playingAudio.paused){
+        playingAudio.pause()
+        if(playingAudio.src === "https://cdns-preview-a.dzcdn.net/stream/c-a8f66cdb27dad259dbf10dc9c2b13c5b-4.mp3"){
+           playingAudio.src = "https://cdns-preview-b.dzcdn.net/stream/c-b0d64b433d8c7f362b89e88825116ee4-4.mp3"
+        }else {
+            playingAudio.src = "https://cdns-preview-a.dzcdn.net/stream/c-a8f66cdb27dad259dbf10dc9c2b13c5b-4.mp3"
+        }
+        return
+    }
+    playingAudio.play()
+   
+    console.log(playingAudio)
+    // if(!playingAudio.paused){
+    //     console.log(playingAudio)
+    //     playingAudio.play()
+    // }
+    
 })
 /*
 TO-DO
