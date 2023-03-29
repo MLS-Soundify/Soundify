@@ -6,6 +6,7 @@ const options = {
 	}
 };
 
+let artistcount = 1
 let userChoice;
 
 // outputting the query results
@@ -134,8 +135,40 @@ let playingAudio = document.getElementById("currentAudio")
 
 let artistButton = document.getElementById("dArtists")
 artistButton.addEventListener("click", element => {
-    console.log(1)
+    let mainArea = document.getElementById("songDisplay")
+    artistcount = 1
+    artistBanner("name","name")
+    
 })
+
+function artistBanner (name, image){
+    let container = document.createElement('div')
+    container.classList = "container"
+    let cardwrap = document.createElement('div')
+    cardwrap.classList = "card-wrapper"
+    let card = document.createElement('div')
+    card.classList = "card"
+    let cardimage = document.createElement('div')
+    cardimage.classList = "card"
+        let artistImg = document.createElement('img')
+        artistImg.src = image
+        artistImg.alt = 'profile one'
+    cardimage.append(artistImg)
+    let details = document.createElement('div')
+    details.classList = "details"
+        let h2 = document.createElement('h2')
+        h2.classList = 'artistTitleDeezer'
+        h2.innerText = name
+            let br = document.createElement('br')
+            let span = document.createElement('span')
+            span.classList = "artistSpan"
+            span.innerText = "Artist"
+        h2.append(br,span)
+    details.append(h2)  
+    
+}
+
+
 /*
 TO-DO
 - make a function that adds the recently listened to songs
