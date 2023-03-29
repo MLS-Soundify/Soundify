@@ -45,6 +45,7 @@ const getSongInfo = async () => {
         let songCover = e.album.cover_medium;
         let trackMusic = e.preview
         let artists = e.artist.name
+        console.log(trackMusic)
         makeSongBanner(songTitle, artists, songCover, trackMusic)
     });
 }
