@@ -18,20 +18,20 @@ uInput.addEventListener("keypress" , e => {
         userChoice = uInput.value
         userChoice = userChoice.replace(' ', '_')
         uInput.value = ''
-        getSongName()
+        getSongInfo()
     }
 })
 uInput2.addEventListener("click", e => {
-    // e.preventDefault();
     if(uInput.value !== ""){
         userChoice = uInput.value
         userChoice = userChoice.replace(' ', '_')
         uInput.value = ''
-        getSongName()
+        getSongInfo()
+        applyAudio()
     }
 })
 
-const getSongName = async () => {
+const getSongInfo = async () => {
     let deezerSongAPI = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${userChoice}&limit=10`, options)
     let songNameJSON = await deezerSongAPI.json()
     const infoArray = songNameJSON.data
@@ -82,6 +82,7 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
                 playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
                     let playIcon = document.createElement('i')
                     playIcon.classList = "bi bi-play-fill text-white"
+                    playbutton.value = music
                     playbutton.append(playIcon)
                 let likebutton = document.createElement('button')
                 likebutton.classList = "ml-8 bg-red-900 hover:bg-red-700 rounded-full p-2"
@@ -95,6 +96,9 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
     document.getElementById("songDisplay").append(div1)
 }
 
+const applyAudio = () => {
+    console.log(document.querySelectorAll('.audio-play'))
+}
 
 const playlists = [{"Mo Knows": []}, {"Slow Jams": []},{"80's Punk": []},{"90's rap": []}] //example of how a playlist layout is
 
@@ -125,7 +129,7 @@ function makePlaylist(){
 document.querySelectorAll(".audio-play").forEach(e => {
     // console.log(e)
 })
-
+let playingAudio = document.getElementById("currentAudio")
 
 /*
 TO-DO
