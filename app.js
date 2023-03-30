@@ -44,9 +44,7 @@ const getSongInfo = async () => {
         let songTitle = e.title;
         let songCover = e.album.cover_medium;
         let trackMusic = e.preview
-        console.log(trackMusic)
         let artists = e.artist.name
-        console.log(trackMusic)
         makeSongBanner(songTitle, artists, songCover, trackMusic)
     });
 }
@@ -55,7 +53,6 @@ const getSongInfo = async () => {
 const makeSongBanner = (songName, artistName, songArt, music) => {
     let div1 = document.createElement('div')
     div1.classList = "flex justify-center mt-10"
-    console.log(div1)
     let div2 = document.createElement('div')
     div2.classList = "max-w-md"
     let div3 = document.createElement('div')
@@ -82,18 +79,27 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
             buttonHolder.classList = "flex userButtons"
                 let playbutton = document.createElement('button')
                 playbutton.value = music
-                playbutton.addEventListener('click', async e => {
-                    console.log(e)
+                playbutton.addEventListener('click', e => {
                     let currentVal = e.target.value;
-                    console.log(currentVal)
                     let playingAudio = document.getElementById("currentAudio")
+                    
                     if(playingAudio.src !== currentVal){
                         playingAudio.src = currentVal
                         playingAudio.play()
+                        return 
+                    }else {
+                        if(!playingAudio.paused){
+                            playingAudio.pause()
+                            return
+                        }else {
+                            playingAudio.play()
+                        }
                     }
+                    
                 })
                 playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
                     let playIcon = document.createElement('i')
+                    playIcon.value = music
                     playIcon.classList = "bi bi-play-fill text-white"
                     playbutton.append(playIcon)
                 let likebutton = document.createElement('button')
@@ -148,11 +154,11 @@ artistButton.addEventListener("click", element => {
     // console.log(element)
     if(!playingAudio.paused){
         playingAudio.pause()
-        if(playingAudio.src === "https://cdns-preview-a.dzcdn.net/stream/c-a8f66cdb27dad259dbf10dc9c2b13c5b-4.mp3"){
-           playingAudio.src = "https://cdns-preview-b.dzcdn.net/stream/c-b0d64b433d8c7f362b89e88825116ee4-4.mp3"
-        }else {
-            playingAudio.src = "https://cdns-preview-a.dzcdn.net/stream/c-a8f66cdb27dad259dbf10dc9c2b13c5b-4.mp3"
-        }
+    if(playingAudio.src === "https://cdns-preview-a.dzcdn.net/stream/c-a8f66cdb27dad259dbf10dc9c2b13c5b-4.mp3"){
+        playingAudio.src = "https://cdns-preview-b.dzcdn.net/stream/c-b0d64b433d8c7f362b89e88825116ee4-4.mp3"
+    }else {
+        playingAudio.src = "https://cdns-preview-a.dzcdn.net/stream/c-a8f66cdb27dad259dbf10dc9c2b13c5b-4.mp3"
+    }
         return
     }
     playingAudio.play()
