@@ -6,6 +6,7 @@ const options = {
 	}
 };
 
+let artistcount = 1
 let userChoice;
 
 // outputting the query results
@@ -80,7 +81,27 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
             buttonHolder.classList = "flex userButtons"
                 let playbutton = document.createElement('button')
                 playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
+                playbutton.value = music
+                playbutton.addEventListener('click', e => {
+                    let currentVal = e.target.value;
+                    let playingAudio = document.getElementById("currentAudio")
+                    
+                    if(playingAudio.src !== currentVal){
+                        playingAudio.src = currentVal
+                        playingAudio.play()
+                        return 
+                    }else {
+                        if(!playingAudio.paused){
+                            playingAudio.pause()
+                            return
+                        }else {
+                            playingAudio.play()
+                        }
+                    }
+                })
+                playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
                     let playIcon = document.createElement('i')
+                    playIcon.value = music
                     playIcon.classList = "bi bi-play-fill text-white"
                     playbutton.append(playIcon)
                 let likebutton = document.createElement('button')
@@ -115,9 +136,45 @@ function displayPlaylists(){
 function makePlaylist(){
     document.querySelector("#playlistInput").classList.toggle("hidden")
 }
-document.querySelectorAll(".audio-play").forEach(e => {
-    // console.log(e)
+
+let artistButton = document.getElementById("dArtists")
+
+artistButton.addEventListener("click", element => {
+    console.log(1)
+    let mainArea = document.getElementById("songDisplay")
+    artistcount = 1
+    console.log(artistBanner("name","https://media.wired.com/photos/5a6145eaa04f826ebb50db6c/master/w_2560%2Cc_limit/Lil-Uzi-Vert-Pub-Photo-1-Spike-Jordan-HR.jpg"))
+
 })
+
+function artistBanner (name, image){
+    let container = document.createElement('div')
+    container.classList = "container"
+    let cardwrap = document.createElement('div')
+    cardwrap.classList = "card-wrapper"
+    let card = document.createElement('div')
+    card.classList = "card"
+    let cardimage = document.createElement('div')
+    cardimage.classList = "card"
+        let artistImg = document.createElement('img')
+        artistImg.src = image
+        artistImg.alt = 'profile one'
+    cardimage.append(artistImg)
+    let details = document.createElement('div')
+    details.classList = "details"
+        let h2 = document.createElement('h2')
+        h2.classList = 'artistTitleDeezer'
+        h2.innerText = name
+            let br = document.createElement('br')
+            let span = document.createElement('span')
+            span.classList = "artistSpan"
+            span.innerText = "Artist"
+        h2.append(br,span)
+    details.append(h2)  
+    cardwrap.append(card,details)
+    container.append(cardwrap)
+    return container
+}
 
 
 /*
