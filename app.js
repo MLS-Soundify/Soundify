@@ -6,7 +6,6 @@ const options = {
 	}
 };
 
-let artistcount = 1
 let userChoice;
 
 // outputting the query results
@@ -19,20 +18,20 @@ uInput.addEventListener("keypress" , e => {
         userChoice = uInput.value
         userChoice = userChoice.replace(' ', '_')
         uInput.value = ''
-        getSongInfo()
+        getSongName()
     }
 })
 uInput2.addEventListener("click", e => {
+    // e.preventDefault();
     if(uInput.value !== ""){
         userChoice = uInput.value
         userChoice = userChoice.replace(' ', '_')
         uInput.value = ''
-        getSongInfo()
-        applyAudio()
+        getSongName()
     }
 })
 
-const getSongInfo = async () => {
+const getSongName = async () => {
     let deezerSongAPI = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${userChoice}&limit=10`, options)
     let songNameJSON = await deezerSongAPI.json()
     const infoArray = songNameJSON.data
@@ -46,7 +45,6 @@ const getSongInfo = async () => {
         let songCover = e.album.cover_medium;
         let trackMusic = e.preview
         let artists = e.artist.name
-        console.log(trackMusic)
         makeSongBanner(songTitle, artists, songCover, trackMusic)
     });
 }
@@ -84,7 +82,6 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
                 playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
                     let playIcon = document.createElement('i')
                     playIcon.classList = "bi bi-play-fill text-white"
-                    playbutton.value = music
                     playbutton.append(playIcon)
                 let likebutton = document.createElement('button')
                 likebutton.classList = "ml-8 bg-red-900 hover:bg-red-700 rounded-full p-2"
@@ -98,9 +95,6 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
     document.getElementById("songDisplay").append(div1)
 }
 
-const applyAudio = () => {
-    console.log(document.querySelectorAll('.audio-play'))
-}
 
 const playlists = [{"Mo Knows": []}, {"Slow Jams": []},{"80's Punk": []},{"90's rap": []}] //example of how a playlist layout is
 
@@ -118,55 +112,12 @@ function displayPlaylists(){
         }
     })
 }
-
-
-
-
-
 function makePlaylist(){
-
     document.querySelector("#playlistInput").classList.toggle("hidden")
-
 }
 document.querySelectorAll(".audio-play").forEach(e => {
     // console.log(e)
 })
-let playingAudio = document.getElementById("currentAudio")
-
-let artistButton = document.getElementById("dArtists")
-artistButton.addEventListener("click", element => {
-    let mainArea = document.getElementById("songDisplay")
-    artistcount = 1
-    artistBanner("name","name")
-    
-})
-
-function artistBanner (name, image){
-    let container = document.createElement('div')
-    container.classList = "container"
-    let cardwrap = document.createElement('div')
-    cardwrap.classList = "card-wrapper"
-    let card = document.createElement('div')
-    card.classList = "card"
-    let cardimage = document.createElement('div')
-    cardimage.classList = "card"
-        let artistImg = document.createElement('img')
-        artistImg.src = image
-        artistImg.alt = 'profile one'
-    cardimage.append(artistImg)
-    let details = document.createElement('div')
-    details.classList = "details"
-        let h2 = document.createElement('h2')
-        h2.classList = 'artistTitleDeezer'
-        h2.innerText = name
-            let br = document.createElement('br')
-            let span = document.createElement('span')
-            span.classList = "artistSpan"
-            span.innerText = "Artist"
-        h2.append(br,span)
-    details.append(h2)  
-    
-}
 
 
 /*
