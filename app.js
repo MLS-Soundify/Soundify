@@ -142,10 +142,33 @@ let artistButton = document.getElementById("dArtists")
 artistButton.addEventListener("click", element => {
     console.log(1)
     let mainArea = document.getElementById("songDisplay")
-    artistcount = 1
-    console.log(artistBanner("name","https://media.wired.com/photos/5a6145eaa04f826ebb50db6c/master/w_2560%2Cc_limit/Lil-Uzi-Vert-Pub-Photo-1-Spike-Jordan-HR.jpg"))
-
+    mainArea.innerText = ""
+    // artistcount = 1
+    artistDisplay()
 })
+
+async function artistDisplay(){
+    document.getElementById("songDisplay").innerText = ''
+    for(let i = artistcount; i < (artistcount + 10); i++){
+        let artistData = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/artist/${i}`, options)
+        let artistjson = await artistData.json()
+        let artistName = artistjson.name
+        let artistjpg = artistjson.picture_medium 
+        if(!artistjpg){
+            console.log("oops!")
+        }else {
+            artistBanner(artistName,artistjpg)
+            console.log(artistjson)
+        }
+        
+        // artistcount = artistcount + 10
+    }
+    artistcount += 10
+    
+    console.log(artistjson.picture_medium)
+    
+}
+
 
 function artistBanner (name, image){
     let container = document.createElement('div')
@@ -155,11 +178,12 @@ function artistBanner (name, image){
     let card = document.createElement('div')
     card.classList = "card"
     let cardimage = document.createElement('div')
-    cardimage.classList = "card"
+    cardimage.classList = "card-image"
         let artistImg = document.createElement('img')
         artistImg.src = image
         artistImg.alt = 'profile one'
     cardimage.append(artistImg)
+    card.append(cardimage)
     let details = document.createElement('div')
     details.classList = "details"
         let h2 = document.createElement('h2')
@@ -173,8 +197,11 @@ function artistBanner (name, image){
     details.append(h2)  
     cardwrap.append(card,details)
     container.append(cardwrap)
-    return container
+    document.querySelector('#songDisplay').append(container)
 }
+
+
+
 
 
 /*
