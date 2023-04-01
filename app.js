@@ -1,3 +1,7 @@
+if(window.innerWidth <= 1000){
+    document.querySelector("#sideBarMain").classList.toggle("hidden");
+}
+
 const options = {
 	method: 'GET',
 	headers: {
@@ -13,6 +17,9 @@ let userChoice;
 
 let uInput = document.getElementById('userSearch')
 let uInput2 = document.getElementById('userSearch2')
+
+//event listeners for getting user input in the box
+
 uInput.addEventListener("keypress" , e => {
     if(e.key === "Enter" && uInput.value !== ""){
         e.preventDefault();
@@ -23,7 +30,6 @@ uInput.addEventListener("keypress" , e => {
     }
 })
 uInput2.addEventListener("click", e => {
-    // e.preventDefault();
     if(uInput.value !== ""){
         userChoice = uInput.value
         userChoice = userChoice.replace(' ', '_')
@@ -31,6 +37,8 @@ uInput2.addEventListener("click", e => {
         getSongName()
     }
 })
+
+//fetching the api to get whatever the user entered last
 
 const getSongName = async () => {
     let deezerSongAPI = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${userChoice}&limit=10`, options)
@@ -85,7 +93,6 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
                 playbutton.addEventListener('click', e => {
                     let currentVal = e.target.value;
                     let playingAudio = document.getElementById("currentAudio")
-                    
                     if(playingAudio.src !== currentVal){
                         playingAudio.src = currentVal
                         playingAudio.play()
@@ -116,12 +123,17 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
     document.getElementById("songDisplay").append(div1)
 }
 
+//displays the different playlists made in the drop down
 
 const playlists = [{"Mo Knows": []}, {"Slow Jams": []},{"80's Punk": []},{"90's rap": []}] //example of how a playlist layout is
 
 function displayPlaylists(){
     document.getElementById("submenu").innerText = ''
     if(playlists.length === 0){
+        let emptyPlaylist = document.createElement('h1')
+        emptyPlaylist.classList = "cursor-pointer p-2 hover:bg-red-800 rounded-md mt-1"
+        emptyPlaylist.innerText = "You haven't made a playlist!"
+        document.getElementById("submenu").append(emptyPlaylist)
         return 
     }
     playlists.forEach( e => {
@@ -137,13 +149,12 @@ function makePlaylist(){
     document.querySelector("#playlistInput").classList.toggle("hidden")
 }
 
-let artistButton = document.getElementById("dArtists")
+//button to display the different artists
 
+let artistButton = document.getElementById("dArtists")
 artistButton.addEventListener("click", element => {
-    console.log(1)
     let mainArea = document.getElementById("songDisplay")
     mainArea.innerText = ""
-    // artistcount = 1
     artistDisplay()
 })
 
@@ -160,15 +171,11 @@ async function artistDisplay(){
             artistBanner(artistName,artistjpg)
             console.log(artistjson)
         }
-        
-        // artistcount = artistcount + 10
     }
     artistcount += 10
-    
-    console.log(artistjson.picture_medium)
-    
 }
 
+//making artist card
 
 function artistBanner (name, image){
     let container = document.createElement('div')
@@ -199,10 +206,6 @@ function artistBanner (name, image){
     container.append(cardwrap)
     document.querySelector('#songDisplay').append(container)
 }
-
-
-
-
 
 /*
 TO-DO
