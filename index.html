@@ -12,17 +12,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
 </head>
 <body>
-    <audio preload="auto" id="currentAudio">
-        <source src="" type="audio/mpeg" />
-    </audio>
-    <div id="sidebar-main" class="bg-red-800">
+  <audio preload="auto" id="currentAudio">
+    <source src="" type="audio/mpeg" />
+  </audio>
+  <div id="sidebar-main" class="bg-purple-800">
       <span
       class="absolute text-white text-4xl top-5 left-4 cursor-pointer"
       onclick="openSidebar()"
     >
       <i class="bi bi-filter-left px-2 bg-red-900 rounded-md"></i>
     </span>
-    <div id="sideBarBackground"
+    <div id="sideBarMain"
       class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center"
     >
       <div class="text-gray-100 text-xl">
@@ -54,8 +54,7 @@
       <i class="bi bi-skip-start-circle"></i>
         <span class="text-[15px] ml-4 text-gray-200 font-bold">Recent Tracks</span>
       </div>
-      <div
-        id="dArtists"
+      <div id="dArtists"
         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-red-600 text-white"
       >
       <i class="bi bi-skip-start-circle"></i>
@@ -110,9 +109,10 @@
 </div>
 </div> 
 
-<div id = "songDisplay" class="songs-album"> </div>
-
-
+<div id = "songDisplay" class="songs-album"> 
+  
+</div>
+</body>
 
   <script src="app.js" type="text/javascript"></script>
   <script type="text/javascript" src="tailwindConfig.js"></script>

@@ -1,3 +1,7 @@
+if(window.innerWidth <= 1000){
+    document.querySelector("#sideBarMain").classList.toggle("hidden");
+}
+
 const options = {
 	method: 'GET',
 	headers: {
@@ -6,19 +10,23 @@ const options = {
 	}
 };
 
+let artistcount = 1
 let userChoice;
 
 // outputting the query results
 
 let uInput = document.getElementById('userSearch')
 let uInput2 = document.getElementById('userSearch2')
+
+//event listeners for getting user input in the box
+
 uInput.addEventListener("keypress" , e => {
     if(e.key === "Enter" && uInput.value !== ""){
         e.preventDefault();
         userChoice = uInput.value
         userChoice = userChoice.replace(' ', '_')
         uInput.value = ''
-        getSongInfo()
+        getSongName()
     }
 })
 uInput2.addEventListener("click", e => {
@@ -26,12 +34,13 @@ uInput2.addEventListener("click", e => {
         userChoice = uInput.value
         userChoice = userChoice.replace(' ', '_')
         uInput.value = ''
-        getSongInfo()
-        applyAudio()
+        getSongName()
     }
 })
 
-const getSongInfo = async () => {
+//fetching the api to get whatever the user entered last
+
+const getSongName = async () => {
     let deezerSongAPI = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${userChoice}&limit=10`, options)
     let songNameJSON = await deezerSongAPI.json()
     const infoArray = songNameJSON.data
@@ -53,6 +62,7 @@ const getSongInfo = async () => {
 const makeSongBanner = (songName, artistName, songArt, music) => {
     let div1 = document.createElement('div')
     div1.classList = "flex justify-center mt-10"
+    console.log(div1)
     let div2 = document.createElement('div')
     div2.classList = "max-w-md"
     let div3 = document.createElement('div')
@@ -78,11 +88,11 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
             let buttonHolder = document.createElement('div')
             buttonHolder.classList = "flex userButtons"
                 let playbutton = document.createElement('button')
+                playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
                 playbutton.value = music
                 playbutton.addEventListener('click', e => {
                     let currentVal = e.target.value;
                     let playingAudio = document.getElementById("currentAudio")
-                    
                     if(playingAudio.src !== currentVal){
                         playingAudio.src = currentVal
                         playingAudio.play()
@@ -95,7 +105,6 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
                             playingAudio.play()
                         }
                     }
-                    
                 })
                 playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
                     let playIcon = document.createElement('i')
@@ -114,15 +123,17 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
     document.getElementById("songDisplay").append(div1)
 }
 
-const applyAudio = () => {
-    console.log(document.querySelectorAll('.audio-play'))
-}
+//displays the different playlists made in the drop down
 
 const playlists = [{"Mo Knows": []}, {"Slow Jams": []},{"80's Punk": []},{"90's rap": []}] //example of how a playlist layout is
 
 function displayPlaylists(){
     document.getElementById("submenu").innerText = ''
     if(playlists.length === 0){
+        let emptyPlaylist = document.createElement('h1')
+        emptyPlaylist.classList = "cursor-pointer p-2 hover:bg-red-800 rounded-md mt-1"
+        emptyPlaylist.innerText = "You haven't made a playlist!"
+        document.getElementById("submenu").append(emptyPlaylist)
         return 
     }
     playlists.forEach( e => {
@@ -134,42 +145,68 @@ function displayPlaylists(){
         }
     })
 }
-
-
-
-
-
 function makePlaylist(){
-
     document.querySelector("#playlistInput").classList.toggle("hidden")
-
 }
-document.querySelectorAll(".audio-play").forEach(e => {
-    // console.log(e)
-})
-let playingAudio = document.getElementById("currentAudio")
+
+//button to display the different artists
 
 let artistButton = document.getElementById("dArtists")
 artistButton.addEventListener("click", element => {
-    // console.log(element)
-    if(!playingAudio.paused){
-        playingAudio.pause()
-    if(playingAudio.src === "https://cdns-preview-a.dzcdn.net/stream/c-a8f66cdb27dad259dbf10dc9c2b13c5b-4.mp3"){
-        playingAudio.src = "https://cdns-preview-b.dzcdn.net/stream/c-b0d64b433d8c7f362b89e88825116ee4-4.mp3"
-    }else {
-        playingAudio.src = "https://cdns-preview-a.dzcdn.net/stream/c-a8f66cdb27dad259dbf10dc9c2b13c5b-4.mp3"
-    }
-        return
-    }
-    playingAudio.play()
-   
-    console.log(playingAudio)
-    // if(!playingAudio.paused){
-    //     console.log(playingAudio)
-    //     playingAudio.play()
-    // }
-    
+    let mainArea = document.getElementById("songDisplay")
+    mainArea.innerText = ""
+    artistDisplay()
 })
+
+async function artistDisplay(){
+    document.getElementById("songDisplay").innerText = ''
+    for(let i = artistcount; i < (artistcount + 10); i++){
+        let artistData = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/artist/${i}`, options)
+        let artistjson = await artistData.json()
+        let artistName = artistjson.name
+        let artistjpg = artistjson.picture_medium 
+        if(!artistjpg){
+            console.log("oops!")
+        }else {
+            artistBanner(artistName,artistjpg)
+            console.log(artistjson)
+        }
+    }
+    artistcount += 10
+}
+
+//making artist card
+
+function artistBanner (name, image){
+    let container = document.createElement('div')
+    container.classList = "container"
+    let cardwrap = document.createElement('div')
+    cardwrap.classList = "card-wrapper"
+    let card = document.createElement('div')
+    card.classList = "card"
+    let cardimage = document.createElement('div')
+    cardimage.classList = "card-image"
+        let artistImg = document.createElement('img')
+        artistImg.src = image
+        artistImg.alt = 'profile one'
+    cardimage.append(artistImg)
+    card.append(cardimage)
+    let details = document.createElement('div')
+    details.classList = "details"
+        let h2 = document.createElement('h2')
+        h2.classList = 'artistTitleDeezer'
+        h2.innerText = name
+            let br = document.createElement('br')
+            let span = document.createElement('span')
+            span.classList = "artistSpan"
+            span.innerText = "Artist"
+        h2.append(br,span)
+    details.append(h2)  
+    cardwrap.append(card,details)
+    container.append(cardwrap)
+    document.querySelector('#songDisplay').append(container)
+}
+
 /*
 TO-DO
 - make a function that adds the recently listened to songs
