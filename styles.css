@@ -132,7 +132,7 @@ backface-visibility: hidden;
 
 .song-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 1rem;
 }
 
@@ -140,7 +140,6 @@ backface-visibility: hidden;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   box-shadow: 0 0 5px #d9d9d9;
-
   background-color:#f94c57;
   color: #fff;
   cursor: pointer;
@@ -149,5 +148,11 @@ backface-visibility: hidden;
 
 .play-button:hover, .like-button:hover {
   background-color: #f94c57;
+}
+.song-name {
+  /* overflow: ; */
+  white-space: nowrap;
+  text-align:center;
+  text-overflow: ellipsis;
 }
 

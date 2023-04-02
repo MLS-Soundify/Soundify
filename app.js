@@ -1,5 +1,6 @@
 if(window.innerWidth <= 1000){
     document.querySelector("#sideBarMain").classList.toggle("hidden");
+    
 }
 
 const options = {
