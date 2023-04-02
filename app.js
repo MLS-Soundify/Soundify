@@ -1,5 +1,6 @@
 if(window.innerWidth <= 1000){
     document.querySelector("#sideBarMain").classList.toggle("hidden");
+    
 }
 
 const options = {
@@ -21,7 +22,7 @@ let uInput2 = document.getElementById('userSearch2')
 //event listeners for getting user input in the box
 
 uInput.addEventListener("keypress" , e => {
-    if(e.key === "Enter" && uInput.value !== ""){
+    if(e.key === "Enter" && (uInput.value).replace(/\s/g,"") !== ""){
         e.preventDefault();
         userChoice = uInput.value
         userChoice = userChoice.replace(' ', '_')
@@ -30,7 +31,7 @@ uInput.addEventListener("keypress" , e => {
     }
 })
 uInput2.addEventListener("click", e => {
-    if(uInput.value !== ""){
+    if((uInput.value).replace(/\s/g,"") !== ""){
         userChoice = uInput.value
         userChoice = userChoice.replace(' ', '_')
         uInput.value = ''
@@ -126,6 +127,24 @@ const makeSongBanner = (songName, artistName, songArt, music) => {
 //displays the different playlists made in the drop down
 
 const playlists = [{"Mo Knows": []}, {"Slow Jams": []},{"80's Punk": []},{"90's rap": []}] //example of how a playlist layout is
+
+//adding to a new playlist on user commnad
+const playlistInput = document.getElementById('playlistAdd')
+const playlistInputClick = document.getElementById('make-playlist-btn')
+
+playlistInput.addEventListener("keypress" , e => {
+    if(e.key === "Enter" && (playlistInput.value).replace(/\s/g,"") !== ""){
+        console.log('hi')
+    }
+})
+playlistInputClick.addEventListener('click', e => {
+    e.preventDefault()
+    if((playlistInput.value).replace(/\s/g,"") !== ""){
+        console.log('not blank')
+    }   
+})
+
+//showing the playlist on click of playlists side nav
 
 function displayPlaylists(){
     document.getElementById("submenu").innerText = ''
