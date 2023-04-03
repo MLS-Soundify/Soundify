@@ -173,18 +173,18 @@ function artistBanner (name, image){
     let container = document.createElement('div')
     container.classList = "artists-container"
     let cardwrap = document.createElement('div')
-    cardwrap.classList = "card-wrapper"
+    cardwrap.classList = "artists-card-wrapper"
     let card = document.createElement('div')
-    card.classList = "card"
+    card.classList = "artists-display-card"
     let cardimage = document.createElement('div')
-    cardimage.classList = "card-image"
+    cardimage.classList = "artists-card-image"
         let artistImg = document.createElement('img')
         artistImg.src = image
         artistImg.alt = 'profile one'
     cardimage.append(artistImg)
     card.append(cardimage)
     let details = document.createElement('div')
-    details.classList = "details"
+    details.classList = "artists-details"
         let h2 = document.createElement('h2')
         h2.classList = 'artistTitleDeezer'
         h2.innerText = name
