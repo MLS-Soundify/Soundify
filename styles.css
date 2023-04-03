@@ -50,9 +50,9 @@ transition: transform 0.5s ease;
 }
 
 .card-image img {
-width: 100%;
-height: 220px;
-object-fit: cover;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
 
 .details {
@@ -60,19 +60,25 @@ padding: 20px;
 text-align: center;
 transition: all 0.5s ease;
 }
-
+.artists-container {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .artistTitleDeezer {
-margin-top: 0;
-font-size: 1em;
-color: #333;
-backface-visibility: hidden;
+  margin-top: 0;
+  font-size: 1em;
+  color: #333;
+  backface-visibility: hidden;
 }
 
 .job-title {
-font-size: 16px;
-color: #666;
-font-style: italic;
-backface-visibility: hidden;
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  backface-visibility: hidden;
 }
 
 
@@ -82,15 +88,14 @@ backface-visibility: hidden;
  
 }
 
-
 .card {
-  background-color: #1f1f1f;
+  background-color: rgb(22, 21, 21);
   color:white;
   border-radius: 5px;
   box-shadow: 0 0 5px #d9d9d9;
   margin: 20px auto; 
   padding: 20px;
-  width: 500px;
+  width: 30em;
   margin-bottom: 20px;
   transition: all 0.5s ease-in-out;
 }
@@ -101,9 +106,11 @@ backface-visibility: hidden;
 .card-img {
   width: 100px;
   height: auto;
+  margin-top:10px;
   border-radius: 5px;
   box-shadow: 0 0 5px #d9d9d9;
   float: left;
+  
 }
 
 .card-body {
@@ -112,21 +119,23 @@ backface-visibility: hidden;
   justify-content: center;
   align-items: center;
   flex: 1;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .card-title {
   font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
+  margin-bottom: 20px;
+  text-align: right; 
 }
 
 .card-buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-around;
   margin-top: 10px;
+  width:100%;
+  margin-bottom: 4px;
 }
 
 .btn-play, .btn-like {
@@ -134,16 +143,22 @@ backface-visibility: hidden;
   background-color: transparent;
   cursor: pointer;
   margin-left: 10px;
-}
 
-.btn-play i, .btn-like i {
-  font-size: 24px;
-  color:#d9d9d9
 }
+.btn-like i {
+  font-size: 24px;
+  color: red
+}
+.btn-play i {
+  font-size: 24px;
+  color: rgb(100, 0, 100)
+} 
 .btn-play:hover i {
-  color: #ffffff; 
+  color: purple; 
+
 }
 
 .btn-like:hover i {
   color: #fc3c44;
 }
+

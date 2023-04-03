@@ -61,67 +61,58 @@ const getSongName = async () => {
 
 
 const makeSongBanner = (songName, artistName, songArt, music) => {
-    let div1 = document.createElement('div')
-    div1.classList = "flex justify-center mt-10"
-    console.log(div1)
-    let div2 = document.createElement('div')
-    div2.classList = "max-w-md"
-    let div3 = document.createElement('div')
-    div3.classList = "flex items-center mb-4"
-    //all inside div3
-        let coverIMG = document.createElement('img')
-        coverIMG.src = songArt
-        coverIMG.alt = "Album Cover"
-        coverIMG.classList = "w-16 h-16 rounded-md mr-4"
-        div3.append(coverIMG)
-        //song data div
-            let songData = document.createElement('div')
-            songData.classList = "userButtons songText"
-            let trackName = document.createElement('h2')
-            trackName.classList = "text-lg font-bold songTitle"
-            trackName.innerText = songName
-            let artistTitle = document.createElement('p')
-            artistTitle.classList = "text-gray-500"
-            artistTitle.innerText = artistName
-            songData.append(trackName, artistTitle)
-        div3.append(songData)
-        //button div
-            let buttonHolder = document.createElement('div')
-            buttonHolder.classList = "flex userButtons"
-                let playbutton = document.createElement('button')
-                playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
-                playbutton.value = music
-                playbutton.addEventListener('click', e => {
-                    let currentVal = e.target.value;
-                    let playingAudio = document.getElementById("currentAudio")
-                    if(playingAudio.src !== currentVal){
-                        playingAudio.src = currentVal
-                        playingAudio.play()
-                        return 
-                    }else {
-                        if(!playingAudio.paused){
-                            playingAudio.pause()
-                            return
-                        }else {
-                            playingAudio.play()
-                        }
-                    }
-                })
-                playbutton.classList = "bg-purple-600 hover:bg-purple-700 rounded-full p-2 audio-play"
-                    let playIcon = document.createElement('i')
-                    playIcon.value = music
-                    playIcon.classList = "bi bi-play-fill text-white"
-                    playbutton.append(playIcon)
-                let likebutton = document.createElement('button')
-                likebutton.classList = "ml-8 bg-red-900 hover:bg-red-700 rounded-full p-2"
-                    let likeIcon = document.createElement('i')
-                    likeIcon.classList = "bi bi-heart-fill text-white"
-                    likebutton.append(likeIcon)
-            buttonHolder.append(playbutton,likebutton)
-        div3.append(buttonHolder)
-    div2.append(div3)
-    div1.append(div2)
-    document.getElementById("songDisplay").append(div1)
+    let card = document.createElement('div')
+    card.classList = "card"
+        // image input
+        let artimg = document.createElement('img')
+        artimg.classList = "card-img"
+        artimg.src = songArt
+    let cardBody = document.createElement('div')
+    cardBody.classList = "card-body"
+        // song name 
+        let cardTitle = document.createElement('h5')
+        cardTitle.classList = 'card-title'
+        cardTitle.innerText = songName
+        //artist name
+        let cardText = document.createElement('p')
+        cardText.classList = 'card-text'
+        cardText.innerText = artistName
+    let cardButtons = document.createElement('div')
+    cardButtons.classList = "card-buttons"
+        //play button
+        let btnPlay = document.createElement('button')
+        btnPlay.classList = "btn-play"
+        btnPlay.value = music
+            let playIcon = document.createElement('i')
+            playIcon.classList = "bi bi-play-circle"
+            playIcon.value = music
+        btnPlay.addEventListener('click', e => {
+            let currentVal = e.target.value;
+            let playingAudio = document.getElementById("currentAudio")
+            if(playingAudio.src !== currentVal){
+                playingAudio.src = currentVal
+                playingAudio.play()
+                return 
+            }else {
+                if(!playingAudio.paused){
+                    playingAudio.pause()
+                    return
+                }else {
+                    playingAudio.play()
+                }
+            }
+        })
+        //like button
+        let btnLike = document.createElement('button')
+        btnLike.classList = "btn-like"
+            let likeIcon = document.createElement('i')
+            likeIcon.classList = "bi bi-heart"
+    btnPlay.append(playIcon)
+    btnLike.append(likeIcon)  
+    cardButtons.append(btnPlay, btnLike) 
+    cardBody.append(cardTitle, cardText, cardButtons)
+    card.append(artimg, cardBody)
+    document.querySelector('#songDisplay').append(card)
 }
 
 //displays the different playlists made in the drop down
@@ -180,7 +171,7 @@ async function artistDisplay(){
 
 function artistBanner (name, image){
     let container = document.createElement('div')
-    container.classList = "container"
+    container.classList = "artists-container"
     let cardwrap = document.createElement('div')
     cardwrap.classList = "card-wrapper"
     let card = document.createElement('div')
